@@ -13,42 +13,16 @@ namespace Domain.Classes
             {
                 return 0;
             }
-
-            text = this.NormalizeWhiteSpace(text);
-            text = text.Trim();
-            return text.Split().Length;
+            
+            return CountWords(text);
         }
 
-        private string NormalizeWhiteSpace(string input)
+        public int CountWords(string text)
         {
-            if (string.IsNullOrEmpty(input))
-                return string.Empty;
-
-            int current = 0;
-            char[] output = new char[input.Length];
-            bool skipped = false;
-
-            foreach (char c in input.ToCharArray())
-            {
-                if (char.IsWhiteSpace(c))
-                {
-                    if (!skipped)
-                    {
-                        if (current > 0)
-                            output[current++] = ' ';
-
-                        skipped = true;
-                    }
-                }
-                else
-                {
-                    skipped = false;
-                    output[current++] = c;
-                }
-            }
-
-            return new string(output, 0, current);
-        }
+            char[] punctuationCharacters = text.Where(char.IsPunctuation).Distinct().ToArray();
+            var words = text.Split().Select(x => x.Trim(punctuationCharacters));
+            return words.Where(x => !string.IsNullOrWhiteSpace(x)).Count();
+        }        
 
         #endregion
     }

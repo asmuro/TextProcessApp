@@ -161,6 +161,19 @@ namespace DomainTestProject.StatisticService
         }
 
         [Test]
+        public void WordsCalculate_HyphensAreNotWords_ShouldIgnoreSpacesAndReturnCorrectCount()
+        {
+            // Arrange
+            IStatisticsService wordsStatisticService = new WordsStatisticService();
+
+            // Act
+            int result = wordsStatisticService.Calculate("- - - - ");
+
+            // Assert
+            result.Should().Be(0);
+        }
+
+        [Test]
         public void WordsCalculate_NullString_ShouldThrowArgumentNullException()
         {
             // Arrange
@@ -227,6 +240,19 @@ namespace DomainTestProject.StatisticService
 
             // Assert
             result.Should().Be(7);
+        }
+
+        [Test]
+        public void SpacesCalculate_SpacesAtTheEndOfTheString_ShouldReturnCorrectCount()
+        {
+            // Arrange
+            IStatisticsService spacesStatisticService = new SpacesStatisticService();
+
+            // Act
+            int result = spacesStatisticService.Calculate("- - - ");
+
+            // Assert
+            result.Should().Be(3);
         }
 
         [Test]

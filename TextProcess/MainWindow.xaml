@@ -68,7 +68,6 @@
                             VerticalAlignment="Stretch"
                             materialDesign:HintAssist.Hint="Text to order"
                             AcceptsReturn="True"
-                            SpellCheck.IsEnabled="True"
                             Text="{Binding TextToOrder}"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto" />
@@ -111,8 +110,7 @@
                             MinWidth="280"
                             VerticalAlignment="Stretch"
                             materialDesign:HintAssist.Hint="Text to analyze"
-                            AcceptsReturn="True"
-                            SpellCheck.IsEnabled="True"
+                            AcceptsReturn="True"                            
                             Text="{Binding TextToAnalyze}"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto" />
